@@ -9,63 +9,63 @@ const countries = [
   {
     name: 'Argentina',
     flag: '🇦🇷',
-    inflation: 211,
+    inflation: 117,
     adoptionScore: 94,
-    globalRank: 11,
+    globalRank: 15,
     remittance: 0,
-    color: '#7C3AED',
-    insight: "Capital controls cap FX purchases at $200/month. USDT P2P volume is consistently top-3 globally — stablecoins are the only functional savings vehicle for millions.",
+    color: '#D97706',
+    insight: "Capital controls ('cepo cambiario') cap legal FX at $200/month. USDT P2P volume is consistently top-3 globally. Even after Milei's reforms cut inflation from 211% (Dec 2023 peak) to 117% by end 2024, stablecoins remain the primary savings vehicle for millions.",
   },
   {
     name: 'Venezuela',
     flag: '🇻🇪',
-    inflation: 190,
+    inflation: 100,
     adoptionScore: 88,
     globalRank: 10,
     remittance: 0,
-    color: '#6D28D9',
-    insight: 'USDT is de facto currency in everyday transactions after bolivar hyperinflation. Crypto adoption predates the DeFi boom by years — necessity drove it, not speculation.',
+    color: '#B45309',
+    insight: 'USDT is de facto currency in everyday transactions. After hyperinflation of millions of percent in 2018–2020, the bolivar stabilised somewhat — 2024 inflation settled near 100% — but institutional trust in the currency is permanently broken. Crypto adoption is structural, not speculative.',
   },
   {
     name: 'Brazil',
     flag: '🇧🇷',
-    inflation: 4.6,
+    inflation: 4.8,
     adoptionScore: 72,
     globalRank: 9,
     remittance: 0,
-    color: '#4F46E5',
-    insight: 'Largest crypto market in LatAm by volume. Nubank (100M+ users) integrated crypto. B3 exploring tokenized equities. PIX instant payments set infrastructure expectations.',
+    color: '#78350F',
+    insight: 'Largest crypto market in LatAm by volume. Nubank (100M+ users) integrated crypto. B3 launched tokenised equity pilots in 2024. PIX processed R$17T in 2024, creating a population accustomed to instant digital settlement.',
   },
   {
     name: 'Colombia',
     flag: '🇨🇴',
-    inflation: 9.3,
+    inflation: 5.2,
     adoptionScore: 61,
     globalRank: 20,
-    remittance: 9.8,
-    color: '#4338CA',
-    insight: 'Peso depreciated 20%+ in 2023. Stablecoin adoption for savings growing fast. Remittance inflows of $9.8B/year drive USDC demand in the corridor.',
+    remittance: 10.5,
+    color: '#92400E',
+    insight: 'Inflation dropped sharply from 9.3% (2023) to 5.2% by end 2024, but peso volatility remains structurally high. Remittance inflows topped $10.5B in 2024, driving USDC corridor demand — Bitso and Stellar-based rails now handle a meaningful share.',
   },
   {
     name: 'Mexico',
     flag: '🇲🇽',
-    inflation: 5.1,
+    inflation: 4.7,
     adoptionScore: 58,
     globalRank: 16,
     remittance: 67,
-    color: '#3730A3',
-    insight: '$67B in annual remittances — largest corridor globally. Bitso + Ripple process $3B+/year. Stablecoin rails are 10x cheaper than Western Union for cross-border transfers.',
+    color: '#78350F',
+    insight: '$67B in annual remittances from the US — the largest bilateral corridor globally. Bitso + Ripple process $3B+/year. Stablecoin rails cost under 0.5% vs 5–8% on Western Union, settling in seconds rather than days.',
   },
 ]
 
 const milestones = [
-  { date: 'Mar 2024', event: 'BlackRock BUIDL launches on Ethereum', tvl: 0.1 },
-  { date: 'Jun 2024', event: 'BUIDL crosses $500M AUM', tvl: 0.5 },
-  { date: 'Sep 2024', event: 'Ondo Finance expands OUSG to Solana & Stellar', tvl: 1.2 },
-  { date: 'Dec 2024', event: 'Total tokenized treasury market hits $3B', tvl: 3.0 },
-  { date: 'Feb 2025', event: 'Franklin Templeton OnChain expands to 11 chains', tvl: 4.1 },
-  { date: 'May 2025', event: 'GENIUS Act passes Senate Banking Committee', tvl: 5.8 },
-  { date: 'May 2026', event: 'Total RWA TVL approaches $20B', tvl: 19.5 },
+  { date: 'Mar 2024', event: 'BlackRock BUIDL launches on Ethereum via Securitize', tvl: 0.1 },
+  { date: 'Apr 2024', event: 'BUIDL crosses $500M AUM — fastest fund growth in history', tvl: 0.5 },
+  { date: 'Jul 2024', event: 'Ondo Finance expands OUSG to Solana & Aptos', tvl: 1.5 },
+  { date: 'Oct 2024', event: 'BUIDL expands to 6 additional chains; total RWA TVL hits $4B', tvl: 4.0 },
+  { date: 'Jan 2025', event: 'Franklin Templeton BENJI on 11 chains; Circle USYC passes $500M', tvl: 6.5 },
+  { date: 'Mar 2025', event: 'GENIUS Act introduced in US Senate; MiCA fully live in EU', tvl: 9.2 },
+  { date: 'May 2026', event: 'Total RWA TVL approaches $20B across 7 major protocols', tvl: 19.5 },
 ]
 
 function CustomTooltip({ active, payload }: { active?: boolean; payload?: Array<{ value: number; payload: (typeof countries)[number] }> }) {
@@ -102,9 +102,9 @@ export default function LatamPage() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
           { label: 'LatAm crypto volume', value: '$562B+', sub: 'Jul 2023–Jun 2024 (Chainalysis)' },
-          { label: 'Argentina USDT rank', value: 'Top 3', sub: 'Global P2P volume, all years' },
-          { label: 'Mexico remittances', value: '$67B/yr', sub: 'largest corridor globally' },
-          { label: 'Peak Argentina CPI', value: '211%', sub: '12-month, Dec 2023' },
+          { label: 'Argentina USDT rank', value: 'Top 3', sub: 'Global P2P volume, Chainalysis 2024' },
+          { label: 'Mexico remittances', value: '$67B/yr', sub: 'Banxico 2024, largest corridor globally' },
+          { label: 'Argentina peak CPI', value: '211%', sub: '12-month peak, Dec 2023 — down to 117% by Dec 2024' },
         ].map((s) => (
           <Card key={s.label} className="bg-card border-border/60">
             <CardContent className="p-5">
@@ -239,10 +239,10 @@ export default function LatamPage() {
             <div className="absolute left-2 top-0 bottom-0 w-px bg-border/40" />
             {milestones.map((m, i) => (
               <div key={i} className="flex gap-5 pl-8 relative">
-                <div className="absolute left-0 top-1.5 w-4 h-4 rounded-full border-2 border-violet-500 bg-card" />
+                <div className="absolute left-0 top-1.5 w-4 h-4 rounded-full border-2 border-amber-500/60 bg-card" />
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-0.5">
-                    <span className="text-xs text-violet-400 font-mono">{m.date}</span>
+                    <span className="text-xs text-amber-400 font-mono">{m.date}</span>
                     <span className="text-muted-foreground/30">·</span>
                     <span className="text-xs text-muted-foreground/50 font-mono">${m.tvl}B TVL</span>
                   </div>
@@ -255,24 +255,24 @@ export default function LatamPage() {
       </Card>
 
       {/* What comes next */}
-      <Card className="bg-card border-violet-500/20">
+      <Card className="bg-card border-amber-500/20">
         <CardHeader className="px-8 pt-8 pb-0">
-          <p className="text-[11px] text-violet-400 font-mono uppercase tracking-widest mb-1">Forward</p>
+          <p className="text-[11px] text-amber-500/60 font-mono uppercase tracking-widest mb-1">Forward</p>
           <h2 className="text-xl font-semibold text-foreground">What Comes Next</h2>
         </CardHeader>
         <CardContent className="px-8 pb-8 pt-5">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 text-sm text-muted-foreground leading-relaxed">
             <div>
-              <h3 className="text-violet-300 font-medium mb-2">GENIUS Act → Institutional Stablecoins</h3>
-              <p>US regulatory clarity unlocks bank-issued stablecoins. For LatAm, this means JPMorgan, Citi, and others can build compliant stablecoin rails for the $200B+ LatAm remittance and trade finance market.</p>
+              <h3 className="text-amber-400 font-medium mb-2">GENIUS Act → Institutional Stablecoins</h3>
+              <p>US regulatory clarity, once passed, unlocks bank-issued stablecoins. For LatAm, this means JPMorgan, Citi, and others can build compliant stablecoin rails into the $200B+ remittance and trade finance market.</p>
             </div>
             <div>
-              <h3 className="text-violet-300 font-medium mb-2">Tokenized Treasuries in EM Portfolios</h3>
-              <p>Argentine and Brazilian family offices are already exploring BUIDL as a yield vehicle. On-chain T-bills denominated in USD, accessible 24/7 without a US brokerage account — this reshapes EM wealth management.</p>
+              <h3 className="text-amber-400 font-medium mb-2">Tokenized Treasuries in EM Portfolios</h3>
+              <p>Argentine and Brazilian family offices are already exploring BUIDL as a yield vehicle. On-chain T-bills denominated in USD, accessible 24/7 without a US brokerage account — this reshapes how EM wealth managers handle dollar allocation.</p>
             </div>
             <div>
-              <h3 className="text-violet-300 font-medium mb-2">DLT Settlement Infrastructure</h3>
-              <p>SWIFT is piloting blockchain. Participants settlement on Ethereum. If LatAm central banks adopt ISO 20022 + DLT rails, the cross-border payment cost structure changes permanently — and the winners are already building.</p>
+              <h3 className="text-amber-400 font-medium mb-2">Central Bank DLT Infrastructure</h3>
+              <p>SWIFT has completed blockchain pilots. Brazil's DREX (CBDC) is in production testing with major banks. If LatAm central banks adopt ISO 20022 + DLT settlement rails, the cross-border cost structure changes permanently.</p>
             </div>
           </div>
         </CardContent>

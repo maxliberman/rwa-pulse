@@ -3,23 +3,23 @@ import { Card, CardContent } from '@/components/ui/card'
 const INSIGHTS = [
   {
     label: 'Growth',
-    text: 'Tokenized Treasuries crossed $10B TVL in under 18 months — faster adoption than any bond ETF in history.',
+    text: 'Tokenized treasury assets grew from ~$1.2B to over $4B in 2024 alone. BlackRock BUIDL hit $500M AUM within weeks of its March 2024 launch — the fastest-growing fund product on record.',
   },
   {
     label: 'Infra',
-    text: "BUIDL's 8-chain deployment signals institutional demand for chain-agnostic settlement infrastructure.",
+    text: "BUIDL expanded from Ethereum to 7 additional chains by Q4 2024, signalling institutional demand for chain-agnostic settlement. Multi-chain deployment is the new baseline, not a differentiator.",
   },
   {
     label: 'LatAm',
-    text: 'LatAm stablecoin volumes correlate with domestic inflation — structural demand from 650M+ people, not speculation.',
+    text: 'LatAm processed $562B+ in on-chain value (Jul 2023–Jun 2024, Chainalysis) — structural demand from 650M+ people driven by inflation, capital controls, and broken FX infrastructure.',
   },
   {
     label: 'Yield',
-    text: 'Private credit on-chain yields 200–400bps over tokenized treasury equivalents, with commensurate liquidity risk.',
+    text: 'Private credit on-chain (Centrifuge, Maple) yields 800–1200bps over tokenized treasury equivalents — but with 10–30x higher liquidity risk and no SIPC protection. The yield premium is real; so is the risk.',
   },
   {
     label: 'Reg',
-    text: 'The GENIUS Act may unlock bank-issued stablecoins on the same rails as these RWA products — watch Circle and JPMorgan Onyx.',
+    text: 'MiCA went fully live in the EU in 2024. The GENIUS Act, introduced in 2025, would create a federal framework for US stablecoins — potentially unlocking bank-issued instruments on the same RWA rails.',
   },
 ]
 

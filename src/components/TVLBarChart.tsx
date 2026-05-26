@@ -11,7 +11,16 @@ import {
 import { Protocol } from '@/lib/types'
 import { formatTVL } from '@/lib/utils'
 
-const COLORS = ['#7C3AED', '#6D28D9', '#5B21B6', '#4C1D95', '#3B0764', '#2E1065', '#1E0A4C', '#150838']
+const COLORS = [
+  'oklch(0.718 0.108 82)',
+  'oklch(0.660 0.120 75)',
+  'oklch(0.600 0.130 68)',
+  'oklch(0.540 0.130 62)',
+  'oklch(0.480 0.120 58)',
+  'oklch(0.420 0.110 55)',
+  'oklch(0.360 0.100 52)',
+  'oklch(0.300 0.090 50)',
+]
 
 interface Props {
   protocols: Protocol[]

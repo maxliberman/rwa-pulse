@@ -11,7 +11,6 @@ export async function GET(
   const data = await res.json()
 
   const tvlHistory = (data.tvl ?? [])
-    .slice(-90)
     .map((pt: { date: number; totalLiquidityUSD: number }) => ({
       date: pt.date,
       totalLiquidityUSD: pt.totalLiquidityUSD,

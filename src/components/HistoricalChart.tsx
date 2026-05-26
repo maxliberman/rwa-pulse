@@ -68,8 +68,8 @@ export default function HistoricalChart({ slug, name }: { slug: string; name: st
         <AreaChart data={data} margin={{ left: 0, right: 8, top: 4, bottom: 0 }}>
           <defs>
             <linearGradient id={`grad-${slug}`} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%"  stopColor="#7C3AED" stopOpacity={0.4} />
-              <stop offset="95%" stopColor="#7C3AED" stopOpacity={0} />
+              <stop offset="5%"  stopColor="oklch(0.718 0.108 82)" stopOpacity={0.35} />
+              <stop offset="95%" stopColor="oklch(0.718 0.108 82)" stopOpacity={0} />
             </linearGradient>
           </defs>
           <XAxis dataKey="date"
@@ -83,7 +83,7 @@ export default function HistoricalChart({ slug, name }: { slug: string; name: st
           />
           <Tooltip content={<CustomTooltip />} />
           <Area type="monotone" dataKey="totalLiquidityUSD"
-            stroke="#7C3AED" strokeWidth={1.5} fill={`url(#grad-${slug})`}
+            stroke="oklch(0.718 0.108 82)" strokeWidth={1.5} fill={`url(#grad-${slug})`}
           />
         </AreaChart>
       </ResponsiveContainer>
