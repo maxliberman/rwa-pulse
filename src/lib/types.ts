@@ -37,4 +37,7 @@ export interface EnrichedProtocol extends Protocol {
   nav?: number
   priceChange24h?: number | null
   marketCap?: number | null
+  comparableAsset?: string
+  targetUser?: string
+  keyRisk?: string
 }

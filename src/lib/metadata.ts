@@ -14,6 +14,9 @@ export interface ProtocolMetadata {
   underlying?: string
   nav?: number
   coingeckoId?: string
+  comparableAsset?: string
+  targetUser?: string
+  keyRisk?: string
 }
 
 const DEFAULT: ProtocolMetadata = {
@@ -25,6 +28,9 @@ const DEFAULT: ProtocolMetadata = {
   institutionalGrade: false,
   tags: ['On-chain', 'Tokenized'],
   risks: { smartContract: 40, custody: 40, liquidity: 50, duration: 30, regulatory: 40 },
+  comparableAsset: 'Alternative Investment',
+  targetUser: 'Investors seeking on-chain exposure to real-world assets',
+  keyRisk: 'Smart contract and custodian risk',
 }
 
 export const PROTOCOL_METADATA: Record<string, ProtocolMetadata> = {
@@ -41,6 +47,9 @@ export const PROTOCOL_METADATA: Record<string, ProtocolMetadata> = {
     issuer: 'BlackRock / Securitize',
     underlying: 'US Treasury Bills, Repo, Cash',
     nav: 1.00,
+    comparableAsset: 'Money Market Fund (VMFXX)',
+    targetUser: 'Institutions, DAOs, and stablecoin issuers seeking yield on idle treasury with daily liquidity.',
+    keyRisk: 'Redemption limited to qualified investors; requires KYC/AML through Securitize.',
   },
   'ondo-yield-assets': {
     category: 'Treasury',
@@ -55,6 +64,9 @@ export const PROTOCOL_METADATA: Record<string, ProtocolMetadata> = {
     issuer: 'Ondo Finance',
     underlying: 'BlackRock iShares SHY ETF (US Treasuries)',
     nav: 1.00,
+    comparableAsset: 'Treasury ETF (iShares SHY)',
+    targetUser: 'Accredited investors and protocols seeking DeFi-native T-Bill exposure with secondary market liquidity.',
+    keyRisk: 'Accredited investor restriction; NAV may trail Fed rate moves by a lag period.',
   },
   'circle-usyc': {
     category: 'Stable Yield',
@@ -69,6 +81,9 @@ export const PROTOCOL_METADATA: Record<string, ProtocolMetadata> = {
     issuer: 'Circle',
     underlying: 'US Treasury Bills',
     nav: 1.00,
+    comparableAsset: 'Fed Funds Rate Instrument',
+    targetUser: 'DeFi protocols and institutions holding idle USDC seeking to earn T-Bill yield without leaving the Circle ecosystem.',
+    keyRisk: 'Circle counterparty concentration; limited to institutional participants.',
   },
   'tether-gold': {
     category: 'Gold',
@@ -82,6 +97,9 @@ export const PROTOCOL_METADATA: Record<string, ProtocolMetadata> = {
     issuer: 'Tether',
     underlying: 'Physical Gold (Swiss Vaults)',
     coingeckoId: 'tether-gold',
+    comparableAsset: 'SPDR Gold Trust (GLD)',
+    targetUser: 'Retail and institutional investors seeking gold exposure with blockchain transferability and no custody fees.',
+    keyRisk: 'Tether issuer risk; less regulatory clarity than PAXG; Swiss vault audit transparency.',
   },
   'paxos-gold': {
     category: 'Gold',
@@ -95,6 +113,9 @@ export const PROTOCOL_METADATA: Record<string, ProtocolMetadata> = {
     issuer: 'Paxos',
     underlying: 'Physical Gold (Brinks Vaults)',
     coingeckoId: 'pax-gold',
+    comparableAsset: 'Physical Gold Bar / Perth Mint',
+    targetUser: 'Institutional investors, family offices, and compliance-conscious allocators needing regulated on-chain gold.',
+    keyRisk: 'Gold price volatility; no yield; NYDFS-regulated but gold commodity rules still apply.',
   },
   'centrifuge-protocol': {
     category: 'Private Debt',
@@ -108,6 +129,9 @@ export const PROTOCOL_METADATA: Record<string, ProtocolMetadata> = {
     risks: { smartContract: 50, custody: 55, liquidity: 70, duration: 60, regulatory: 50 },
     issuer: 'Centrifuge DAO',
     underlying: 'Trade Finance, Mortgages, Private Loans',
+    comparableAsset: 'Private Credit Fund (Ares, Blue Owl)',
+    targetUser: 'Sophisticated DeFi investors and alternative credit allocators seeking yield above T-Bill rates with tolerance for illiquidity.',
+    keyRisk: 'Borrower default risk; illiquid pools; smart contract complexity; no SIPC/FDIC protection.',
   },
   'spiko': {
     category: 'Treasury',
@@ -122,6 +146,9 @@ export const PROTOCOL_METADATA: Record<string, ProtocolMetadata> = {
     issuer: 'Spiko',
     underlying: 'European Government Securities',
     nav: 1.00,
+    comparableAsset: 'Euro T-Bill Fund (Amundi)',
+    targetUser: 'European institutions and DAOs seeking EU-regulated on-chain cash management with UCITS-like protections.',
+    keyRisk: 'EUR-denominated yield; MiCA regulatory evolution; redemption restricted to eligible investors.',
   },
 }
 
