@@ -10,7 +10,7 @@ const RISK_LABELS: { key: keyof ProtocolRisks; label: string; desc: string }[] =
   { key: 'regulatory', label: 'Regulatory', desc: 'Policy change or enforcement exposure' },
 ]
 
-function label(score: number) {
+function scoreLabel(score: number) {
   if (score <= 30) return { text: 'Low', color: 'text-emerald-400' }
   if (score <= 60) return { text: 'Medium', color: 'text-amber-400' }
   return { text: 'High', color: 'text-red-400' }
@@ -19,22 +19,22 @@ function label(score: number) {
 export default function RiskBars({ risks }: { risks: ProtocolRisks }) {
   return (
     <div className="space-y-5">
-      {RISK_LABELS.map(({ key, desc, label: labelText }) => {
+      {RISK_LABELS.map(({ key, label, desc }) => {
         const score = risks[key]
-        const { text, color } = label(score)
+        const { text, color } = scoreLabel(score)
         return (
           <div key={key}>
             <div className="flex items-center justify-between mb-1.5">
               <div className="flex items-center gap-2">
-                <span className="text-sm text-slate-300 font-medium">{labelText}</span>
-                <span className="text-xs text-slate-600 hidden sm:inline">{desc}</span>
+                <span className="text-sm text-foreground font-medium">{label}</span>
+                <span className="text-xs text-muted-foreground/50 hidden sm:inline">{desc}</span>
               </div>
               <div className="flex items-center gap-2 shrink-0">
                 <span className={`text-xs font-medium ${color}`}>{text}</span>
-                <span className="text-xs font-mono text-slate-600">{score}/100</span>
+                <span className="text-xs font-mono text-muted-foreground/40">{score}/100</span>
               </div>
             </div>
-            <div className="h-1.5 bg-[#1C1C2E] rounded-full overflow-hidden">
+            <div className="h-1.5 bg-border/40 rounded-full overflow-hidden">
               <div
                 className={`h-full rounded-full transition-all duration-700 ${riskBarColor(score)}`}
                 style={{ width: `${score}%` }}
@@ -43,9 +43,9 @@ export default function RiskBars({ risks }: { risks: ProtocolRisks }) {
           </div>
         )
       })}
-      <p className="text-xs text-slate-600 pt-2">
+      <p className="text-xs text-muted-foreground/40 pt-2">
         Indicative scores for due diligence context. See full{' '}
-        <Link href="/methodology" className="text-violet-400 hover:text-violet-300 underline">
+        <Link href="/methodology" className="text-violet-400 hover:text-violet-300 underline underline-offset-2">
           risk methodology
         </Link>
         .

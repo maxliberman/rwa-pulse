@@ -21,8 +21,8 @@ function CustomTooltip({ active, payload }: { active?: boolean; payload?: Array<
   if (!active || !payload?.length) return null
   const p = payload[0]
   return (
-    <div className="bg-[#0E0E1C] border border-[#2A2A40] rounded-lg px-3 py-2 text-sm">
-      <p className="text-white font-medium">{p.payload.name}</p>
+    <div className="bg-popover border border-border rounded-lg px-3 py-2 text-sm shadow-xl shadow-black/40">
+      <p className="text-foreground font-medium">{p.payload.name}</p>
       <p className="text-amber-400 font-mono">{formatTVL(p.value)}</p>
     </div>
   )
@@ -37,19 +37,19 @@ export default function TVLBarChart({ protocols }: Props) {
         <XAxis
           type="number"
           tickFormatter={(v) => formatTVL(v)}
-          tick={{ fill: '#64748B', fontSize: 11, fontFamily: 'monospace' }}
+          tick={{ fill: 'oklch(0.490 0.040 250)', fontSize: 10, fontFamily: 'var(--font-mono)' }}
           axisLine={false}
           tickLine={false}
         />
         <YAxis
           type="category"
           dataKey="name"
-          tick={{ fill: '#94A3B8', fontSize: 12 }}
+          tick={{ fill: 'oklch(0.708 0 0)', fontSize: 11 }}
           axisLine={false}
           tickLine={false}
           width={140}
         />
-        <Tooltip content={<CustomTooltip />} cursor={{ fill: '#1C1C2E' }} />
+        <Tooltip content={<CustomTooltip />} cursor={{ fill: 'oklch(0.155 0.030 275)' }} />
         <Bar dataKey="tvl" radius={[0, 4, 4, 0]}>
           {data.map((_, i) => (
             <Cell key={i} fill={COLORS[i] ?? COLORS[COLORS.length - 1]} />

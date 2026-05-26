@@ -3,7 +3,10 @@ import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { EnrichedProtocol } from '@/lib/types'
-import { formatTVL, formatChange, changeColor, riskColor, categoryColor, formatPrice } from '@/lib/utils'
+import { formatTVL, formatChange, changeColor, riskColor, categoryColor, formatPrice, cn } from '@/lib/utils'
+import { Input } from '@/components/ui/input'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
 
 type SortKey = 'tvl' | 'change7d' | 'name'
 type SortDir = 'asc' | 'desc'
@@ -42,121 +45,131 @@ export default function AllocationMatrix({ protocols }: { protocols: EnrichedPro
   }
 
   function SortIcon({ k }: { k: SortKey }) {
-    if (sortKey !== k) return <span className="text-slate-700 ml-1">↕</span>
+    if (sortKey !== k) return <span className="text-border ml-1">↕</span>
     return <span className="text-violet-400 ml-1">{sortDir === 'desc' ? '↓' : '↑'}</span>
   }
 
   return (
     <div>
       {/* Filters */}
-      <div className="flex flex-wrap gap-3 mb-5">
-        <input
+      <div className="flex flex-wrap gap-2.5 mb-5">
+        <Input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search asset..."
-          className="bg-[#0E0E1C] border border-[#1C1C2E] rounded-lg px-3 py-1.5 text-sm text-slate-300 placeholder:text-slate-600 outline-none focus:border-violet-500/50 w-44"
+          className="w-44 h-8 text-sm font-mono bg-card border-border/60 focus-visible:ring-violet-500/30 focus-visible:border-violet-500/50"
         />
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          className="bg-[#0E0E1C] border border-[#1C1C2E] rounded-lg px-3 py-1.5 text-sm text-slate-300 outline-none focus:border-violet-500/50"
+          className="bg-card border border-border/60 rounded-md px-3 h-8 text-sm text-foreground outline-none focus:border-violet-500/50 font-mono cursor-pointer"
         >
           {CATEGORIES.map((c) => <option key={c} value={c}>{c}</option>)}
         </select>
         <select
           value={risk}
           onChange={(e) => setRisk(e.target.value)}
-          className="bg-[#0E0E1C] border border-[#1C1C2E] rounded-lg px-3 py-1.5 text-sm text-slate-300 outline-none focus:border-violet-500/50"
+          className="bg-card border border-border/60 rounded-md px-3 h-8 text-sm text-foreground outline-none focus:border-violet-500/50 font-mono cursor-pointer"
         >
           {RISKS.map((r) => <option key={r} value={r}>{r} Risk</option>)}
         </select>
-        <button
+        <Button
+          variant="outline"
+          size="sm"
           onClick={() => setInstitutional((v) => !v)}
-          className={`text-sm px-3 py-1.5 rounded-lg border transition-colors ${institutional ? 'bg-amber-500/10 border-amber-500/30 text-amber-300' : 'border-[#1C1C2E] text-slate-500 hover:text-slate-300'}`}
+          className={cn(
+            'h-8 text-xs font-mono border-border/60',
+            institutional ? 'bg-amber-500/10 border-amber-500/30 text-amber-300 hover:bg-amber-500/15' : 'text-muted-foreground hover:text-foreground'
+          )}
         >
           Inst. Grade
-        </button>
-        <button
+        </Button>
+        <Button
+          variant="outline"
+          size="sm"
           onClick={() => setYielding((v) => !v)}
-          className={`text-sm px-3 py-1.5 rounded-lg border transition-colors ${yielding ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300' : 'border-[#1C1C2E] text-slate-500 hover:text-slate-300'}`}
+          className={cn(
+            'h-8 text-xs font-mono border-border/60',
+            yielding ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/15' : 'text-muted-foreground hover:text-foreground'
+          )}
         >
           Yielding Only
-        </button>
-        <span className="text-xs text-slate-600 self-center ml-auto">{filtered.length} assets</span>
+        </Button>
+        <span className="text-xs text-muted-foreground/50 font-mono self-center ml-auto">{filtered.length} assets</span>
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto rounded-xl border border-[#1C1C2E]">
+      <div className="overflow-x-auto rounded-xl border border-border/60">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b border-[#1C1C2E] bg-[#0A0A14]">
-              <th className="text-left text-xs text-slate-500 uppercase tracking-wider px-4 py-3 font-medium">
-                <button onClick={() => toggleSort('name')} className="hover:text-slate-300 transition-colors">
+            <tr className="border-b border-border/60 bg-secondary/30">
+              <th className="text-left text-[10px] text-muted-foreground uppercase tracking-widest px-4 py-3 font-medium font-mono">
+                <button onClick={() => toggleSort('name')} className="hover:text-foreground transition-colors">
                   Asset <SortIcon k="name" />
                 </button>
               </th>
-              <th className="text-left text-xs text-slate-500 uppercase tracking-wider px-3 py-3 font-medium">Category</th>
-              <th className="text-right text-xs text-slate-500 uppercase tracking-wider px-3 py-3 font-medium">Price / NAV</th>
-              <th className="text-right text-xs text-slate-500 uppercase tracking-wider px-3 py-3 font-medium">
-                <button onClick={() => toggleSort('tvl')} className="hover:text-slate-300 transition-colors">
+              <th className="text-left text-[10px] text-muted-foreground uppercase tracking-widest px-3 py-3 font-medium font-mono">Category</th>
+              <th className="text-right text-[10px] text-muted-foreground uppercase tracking-widest px-3 py-3 font-medium font-mono">Price / NAV</th>
+              <th className="text-right text-[10px] text-muted-foreground uppercase tracking-widest px-3 py-3 font-medium font-mono">
+                <button onClick={() => toggleSort('tvl')} className="hover:text-foreground transition-colors">
                   TVL <SortIcon k="tvl" />
                 </button>
               </th>
-              <th className="text-right text-xs text-slate-500 uppercase tracking-wider px-3 py-3 font-medium">Yield</th>
-              <th className="text-right text-xs text-slate-500 uppercase tracking-wider px-3 py-3 font-medium">
-                <button onClick={() => toggleSort('change7d')} className="hover:text-slate-300 transition-colors">
+              <th className="text-right text-[10px] text-muted-foreground uppercase tracking-widest px-3 py-3 font-medium font-mono">Yield</th>
+              <th className="text-right text-[10px] text-muted-foreground uppercase tracking-widest px-3 py-3 font-medium font-mono">
+                <button onClick={() => toggleSort('change7d')} className="hover:text-foreground transition-colors">
                   7D <SortIcon k="change7d" />
                 </button>
               </th>
-              <th className="text-center text-xs text-slate-500 uppercase tracking-wider px-3 py-3 font-medium">Risk</th>
-              <th className="text-left text-xs text-slate-500 uppercase tracking-wider px-3 py-3 font-medium">Role</th>
+              <th className="text-center text-[10px] text-muted-foreground uppercase tracking-widest px-3 py-3 font-medium font-mono">Risk</th>
+              <th className="text-left text-[10px] text-muted-foreground uppercase tracking-widest px-3 py-3 font-medium font-mono">Role</th>
               <th className="px-3 py-3" />
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#1C1C2E]">
+          <tbody className="divide-y divide-border/40">
             {filtered.map((p) => (
-              <tr key={p.slug} className="bg-[#0E0E1C] hover:bg-[#111120] transition-colors">
+              <tr key={p.slug} className="bg-card hover:bg-secondary/30 transition-colors">
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-2.5">
                     {p.logo ? (
                       <Image src={p.logo} alt={p.name} width={24} height={24} className="rounded-full" unoptimized />
                     ) : (
-                      <div className="w-6 h-6 rounded-full bg-[#1C1C2E] flex items-center justify-center text-[10px] text-slate-400 font-bold">{p.name[0]}</div>
+                      <div className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center text-[10px] text-muted-foreground font-bold">{p.name[0]}</div>
                     )}
                     <div>
-                      <p className="text-white font-medium text-sm leading-tight">{p.name}</p>
-                      {p.institutionalGrade && <span className="text-[9px] text-amber-400/60">● Inst.</span>}
+                      <p className="text-foreground font-medium text-sm leading-tight">{p.name}</p>
+                      {p.institutionalGrade && <span className="text-[9px] text-amber-400/60 font-mono">● Inst.</span>}
                     </div>
                   </div>
                 </td>
                 <td className="px-3 py-3">
-                  <span className={`text-[10px] font-medium px-1.5 py-0.5 rounded border ${categoryColor(p.category)}`}>
+                  <Badge variant="outline" className={cn('text-[10px] font-medium px-1.5 h-4 border', categoryColor(p.category))}>
                     {p.category}
-                  </span>
+                  </Badge>
                 </td>
-                <td className="px-3 py-3 text-right font-mono text-sm text-white">
+                <td className="px-3 py-3 text-right font-mono text-sm text-foreground">
                   {p.price != null ? formatPrice(p.price) : (p.nav ? `$${p.nav.toFixed(2)}` : '—')}
                 </td>
-                <td className="px-3 py-3 text-right font-mono text-sm text-white">{formatTVL(p.tvl)}</td>
+                <td className="px-3 py-3 text-right font-mono text-sm text-foreground">{formatTVL(p.tvl)}</td>
                 <td className="px-3 py-3 text-right">
                   {p.estimatedYield
                     ? <span className="text-emerald-400 font-mono text-sm">{p.estimatedYield}</span>
-                    : <span className="text-slate-600 text-sm">—</span>
+                    : <span className="text-muted-foreground/30 text-sm">—</span>
                   }
                 </td>
-                <td className={`px-3 py-3 text-right font-mono text-sm ${changeColor(p.change7d)}`}>
+                <td className={cn('px-3 py-3 text-right font-mono text-sm', changeColor(p.change7d))}>
                   {formatChange(p.change7d)}
                 </td>
                 <td className="px-3 py-3 text-center">
-                  <span className={`text-[10px] font-medium px-2 py-0.5 rounded border ${riskColor(p.riskLevel)}`}>
+                  <Badge variant="outline" className={cn('text-[10px] font-medium px-1.5 h-4 border', riskColor(p.riskLevel))}>
                     {p.riskLevel}
-                  </span>
+                  </Badge>
                 </td>
                 <td className="px-3 py-3 text-xs text-violet-300">{p.portfolioRole}</td>
                 <td className="px-3 py-3">
                   <Link
                     href={`/protocol/${p.slug}`}
-                    className="text-xs text-slate-400 hover:text-white transition-colors whitespace-nowrap"
+                    className="text-xs text-muted-foreground/50 hover:text-foreground transition-colors whitespace-nowrap"
                   >
                     Analyze →
                   </Link>
@@ -166,7 +179,7 @@ export default function AllocationMatrix({ protocols }: { protocols: EnrichedPro
           </tbody>
         </table>
         {filtered.length === 0 && (
-          <div className="py-12 text-center text-slate-500 text-sm">No assets match your filters</div>
+          <div className="py-12 text-center text-muted-foreground text-sm">No assets match your filters</div>
         )}
       </div>
     </div>

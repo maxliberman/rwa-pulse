@@ -1,6 +1,8 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { Separator } from '@/components/ui/separator'
+import { Badge } from '@/components/ui/badge'
 
 const LINKS = [
   { href: '/', label: 'Dashboard' },
@@ -13,30 +15,40 @@ export default function Navbar() {
   const path = usePathname()
 
   return (
-    <nav className="border-b border-[#1C1C2E] mb-8">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 shrink-0">
-          <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-          <span className="font-semibold tracking-tight text-white">
+    <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between gap-6">
+        <Link href="/" className="flex items-center gap-2.5 shrink-0 group">
+          <div className="relative">
+            <span className="w-2 h-2 rounded-full bg-amber-400 block animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-amber-400/30 block absolute inset-0 animate-ping" />
+          </div>
+          <span className="font-semibold tracking-tight text-foreground text-sm">
             RWA <span className="text-amber-400">Pulse</span>
           </span>
+          <Badge variant="outline" className="text-[10px] text-muted-foreground border-border/50 font-mono px-1.5 py-0 hidden sm:flex">
+            LIVE
+          </Badge>
         </Link>
-        <div className="flex items-center gap-1 text-sm overflow-x-auto">
+
+        <nav className="flex items-center gap-1">
           {LINKS.map(({ href, label }) => (
             <Link
               key={href}
               href={href}
-              className={`px-3 py-1.5 rounded-lg transition-colors whitespace-nowrap ${
+              className={`relative px-3 py-1.5 text-xs font-medium rounded-md transition-all duration-150 ${
                 path === href
-                  ? 'text-white bg-[#1C1C2E]'
-                  : 'text-slate-400 hover:text-white hover:bg-[#1C1C2E]/50'
+                  ? 'text-foreground bg-secondary'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-secondary/60'
               }`}
             >
               {label}
+              {path === href && (
+                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-px bg-primary rounded-full" />
+              )}
             </Link>
           ))}
-        </div>
+        </nav>
       </div>
-    </nav>
+    </header>
   )
 }
